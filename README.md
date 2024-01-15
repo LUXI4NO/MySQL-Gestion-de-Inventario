@@ -6,14 +6,6 @@ Este repositorio contiene códigos para el análisis y visualización de datos, 
 
 Los códigos proporcionados se centran en la gestión de inventario y registro de proveedores y productos, utilizando Streamlit, Plotly Express y una base de datos MySQL. Se incluyen funcionalidades para el registro, visualización y análisis de datos relacionados con el inventario y los movimientos de productos.
 
-
-## Librerías Utilizadas
-
-- `streamlit`
-- `pandas`
-- `mysql.connector`
-- `plotly.express`
-
 ## Datos Utilizados
 
 Los datos se almacenan en una base de datos MySQL llamada "Negocio" y se utilizan para registrar proveedores, productos y movimientos de inventario.
@@ -43,7 +35,7 @@ La base de datos ha sido diseñada cuidadosamente, aprovechando las relaciones e
 - Validación de entrada para teléfono y correo electrónico.
 - Visualización de proveedores y productos registrados en tablas.
 - Eliminación de la última fila de proveedores y productos.
-
+![image](https://github.com/LUXI4NO/MySQL-Gestion-de-Inventario/assets/140111840/41725d6a-f283-49ab-b068-185d726bb059)
 ### Registro Visual del Inventario de Entrada de Productos
 
 - **Inventario Detallado:** Muestra una tabla detallada con información crucial sobre los productos almacenados, incluyendo nombre, stock, precios, categoría, ubicación en el almacén y fechas asociadas.
@@ -53,6 +45,7 @@ La base de datos ha sido diseñada cuidadosamente, aprovechando las relaciones e
 - **Registro de Salida de Productos:** Permite registrar salidas de productos, como ventas, con la posibilidad de seleccionar el producto, tipo de movimiento y cantidad. La aplicación actualiza automáticamente el stock en consecuencia.
 
 - **Registro Histórico de Salidas:** Ofrece una tabla que presenta el historial de salidas de productos, incluyendo detalles como nombre del producto, ubicación, cantidad, tipo de movimiento, fecha y precio de venta.
+![image](https://github.com/LUXI4NO/MySQL-Gestion-de-Inventario/assets/140111840/d09f5d90-361a-4ac1-b52c-b16b94214427)
 
 ### Análisis Visual de Movimientos de Salida de Productos
 
@@ -61,27 +54,21 @@ La base de datos ha sido diseñada cuidadosamente, aprovechando las relaciones e
 - **Valor Total por Tipo de Movimiento:** Representa gráficamente el valor total generado por cada tipo de movimiento (por ejemplo, ventas), permitiendo una evaluación rápida de la contribución financiera de cada tipo.
 
 - **Cantidad Total por Fecha de Movimiento:** Muestra un gráfico de barras que ilustra la cantidad total de productos que salieron en un día específico, facilitando la identificación de patrones y tendencias.
+![image](https://github.com/LUXI4NO/MySQL-Gestion-de-Inventario/assets/140111840/cd26c740-edaf-4584-8718-7a7ff346aa77)
 
 ### Análisis Visual de Movimientos del Inventario de Productos
 - Gráficos de pastel y de barras para analizar la distribución del stock y el valor total por producto.
 - Gráfico adicional para mostrar el stock de productos por ubicación en el almacén.
 - Análisis visual de los movimientos de salida de productos con gráficos de pastel y de barras.
+![image](https://github.com/LUXI4NO/MySQL-Gestion-de-Inventario/assets/140111840/e006367f-6d08-4578-b8fe-4c05b609a530)
 
-### Ejemplos de Gráficos Generados
 
-[En desarrollo]
-
-## Uso
-
-[En desarrollo]
-
-## Dependencias
-
-- Streamlit
-- Pandas
-- MySQL Connector
-- Plotly Express
-
+## Librerías Utilizadas
+- `streamlit`
+- `pandas`
+- `mysql.connector`
+- `plotly.express`
+  
 ## Instrucciones de Uso
 
 1. Clona el repositorio: `git clone https://github.com/tu_usuario/analisis-de-datos.git`
@@ -91,16 +78,9 @@ La base de datos ha sido diseñada cuidadosamente, aprovechando las relaciones e
 # Autor
 ### Luciano Ezequiel Alvarez
 
-## Casos de Uso y Aplicaciones Futuras
 
-[En desarrollo]
 
 ## Enlaces
-
-- [![Gmail](https://img.shields.io/badge/Gmail-D14836?style=for-the-badge&logo=gmail&logoColor=white)](mailto:alvarezlucianoezequiel@gmail.com)
-- [![LinkedIn](https://img.shields.io/badge/LinkedIn-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/luciano-alvarez-332843285/)
-
-
 
 - [![Gmail](https://img.shields.io/badge/Gmail-D14836?style=for-the-badge&logo=gmail&logoColor=white)](mailto:alvarezlucianoezequiel@gmail.com)
 - [![LinkedIn](https://img.shields.io/badge/LinkedIn-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/luciano-alvarez-332843285/)
