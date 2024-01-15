@@ -6,11 +6,6 @@ Este repositorio contiene códigos para el análisis y visualización de datos, 
 
 Los códigos proporcionados se centran en la gestión de inventario y registro de proveedores y productos, utilizando Streamlit, Plotly Express y una base de datos MySQL. Se incluyen funcionalidades para el registro, visualización y análisis de datos relacionados con el inventario y los movimientos de productos.
 
-## Tabla de Contenidos
-
-1. **Registro de Proveedores y Productos**
-2. **Análisis Visual de Movimientos del Inventario de Productos**
-3. **Análisis Visual de Movimientos de Salida de Productos**
 
 ## Librerías Utilizadas
 
@@ -22,6 +17,24 @@ Los códigos proporcionados se centran en la gestión de inventario y registro d
 ## Datos Utilizados
 
 Los datos se almacenan en una base de datos MySQL llamada "Negocio" y se utilizan para registrar proveedores, productos y movimientos de inventario.
+
+## Base de Datos MySQL
+
+El sistema está respaldado por una sólida estructura de Base de Datos MySQL que soporta eficientemente las siguientes funcionalidades clave:
+
+1. **Gestión de Proveedores:**
+   - Registro detallado de proveedores, incluyendo información como nombre, ubicación, contacto, correo electrónico y notas adicionales.
+
+2. **Control de Productos:**
+   - Almacenamiento y seguimiento de productos con atributos significativos como nombre, descripción, categoría, precios de compra y venta, así como la cantidad disponible en stock.
+
+3. **Seguimiento de Existencias:**
+   - Sistema de control de existencias que registra la ubicación en el almacén, la fecha de entrada y la fecha de caducidad (cuando sea aplicable) para una gestión eficiente.
+
+4. **Movimientos de Inventario:**
+   - Registro de movimientos de entrada y salida de productos, con detalles como la cantidad afectada, el tipo de movimiento (entrada/salida) y la fecha correspondiente.
+
+La base de datos ha sido diseñada cuidadosamente, aprovechando las relaciones entre las tablas para garantizar la integridad y consistencia de los datos. Esta estructura proporciona una base robusta para la implementación de otras características y facilita el mantenimiento y la expansión del sistema en el futuro.
 
 ## Funcionalidades
 
