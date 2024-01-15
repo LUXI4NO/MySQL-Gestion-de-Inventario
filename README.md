@@ -1,7 +1,20 @@
 # Análisis de Datos
 
 Este repositorio contiene códigos para el análisis y visualización de datos, enfocándose en la gestión de inventario, registro de proveedores y productos, así como análisis visual de movimientos de inventario.
+## Tabla de Contenidos
 
+- [Descripción](#descripción)
+- [Datos Utilizados](#datos-utilizados)
+- [Base de Datos MySQL](#base-de-datos-mysql)
+- [Funcionalidades](#funcionalidades)
+- [Registro de Proveedores y Productos](#registro-de-proveedores-y-productos)
+- [Registro Visual del Inventario de Entrada de Productos](#registro-visual-del-inventario-de-entrada-de-productos)
+- [Análisis Visual de Movimientos de Salida de Productos](#análisis-visual-de-movimientos-de-salida-de-productos)
+- [Análisis Visual de Movimientos del Inventario de Productos](#análisis-visual-de-movimientos-del-inventario-de-productos)
+- [Librerías Utilizadas](#librerías-utilizadas)
+- [Instrucciones de Uso](#instrucciones-de-uso)
+- [Autor](#autor)
+- [Enlaces](#enlaces)
 ## Descripción
 
 Los códigos proporcionados se centran en la gestión de inventario y registro de proveedores y productos, utilizando Streamlit, Plotly Express y una base de datos MySQL. Se incluyen funcionalidades para el registro, visualización y análisis de datos relacionados con el inventario y los movimientos de productos.
@@ -62,13 +75,55 @@ La base de datos ha sido diseñada cuidadosamente, aprovechando las relaciones e
 - Análisis visual de los movimientos de salida de productos con gráficos de pastel y de barras.
 ![image](https://github.com/LUXI4NO/MySQL-Gestion-de-Inventario/assets/140111840/e006367f-6d08-4578-b8fe-4c05b609a530)
 
+## Ejemplo de Graficos
 
-## Librerías Utilizadas
-- `streamlit`
-- `pandas`
-- `mysql.connector`
-- `plotly.express`
-  
+```python
+with st.container():
+    st.write("##")
+    st.markdown("<h1 style='text-align: center;'>Análisis Visual de Movimientos del Inventario de Productos</h1>", unsafe_allow_html=True)
+    st.write("##")
+
+            # Conectar a la base de datos y recuperar los datos del inventario
+    with conectar_bd() as conexion, conexion.cursor() as cursor:
+        # Consulta SQL
+        query_inventario = """
+        SELECT p.Nombre AS Nombre_Producto, p.Stock, p.PrecioCompra, p.PrecioVenta, p.Categoria, e.UbicacionAlmacen, e.FechaEntrada, e.FechaCaducidad
+        FROM Existencias e
+        INNER JOIN Productos p ON e.ID_Productos = p.ID_Productos
+        WHERE p.Stock > 0  # Solo seleccionar productos con stock mayor que cero
+        """
+
+                # Ejecutar la consulta
+        cursor.execute(query_inventario)
+        datos_inventario = cursor.fetchall()
+
+            # Inicializar tabla_inventario como None
+        tabla_inventario = None
+
+            # Crear tabla_inventario si hay datos en datos_inventario
+        if datos_inventario:
+            tabla_inventario = pd.DataFrame(datos_inventario, columns=["Producto", "Stock", "Precio Unitario", "Precio de Venta", "Categoría", "Ubicación en Almacén", "Fecha de Entrada", "Fecha de Caducidad"])
+
+            columna_uno, columna_dos = st.columns(2)
+
+            with columna_uno:
+                fig_pie = px.pie(tabla_inventario, names='Producto', values='Stock', title='Distribución del Stock por Producto')
+                fig_pie.update_traces(textposition='inside', textinfo='percent+label')
+                fig_pie.update_layout(
+                    width=600,
+                    height=400,
+                    margin=dict(t=40, b=60),
+                    showlegend=True,
+                    legend=dict(x=1, y=0.5),
+                )
+                fig_pie.update_traces(marker=dict(line=dict(color='#ffffff', width=2)))
+                fig_pie.update_traces(
+                    hovertemplate='<b>%{label}</b><br>Stock: %{percent}<br>',
+                )
+
+                    # Mostrar el gráfico de pastel en Streamlit
+                st.plotly_chart(fig_pie, use_container_width=True)
+```  
 ## Instrucciones de Uso
 
 1. Clona el repositorio: `git clone https://github.com/tu_usuario/analisis-de-datos.git`
