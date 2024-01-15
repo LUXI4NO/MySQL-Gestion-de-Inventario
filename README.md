@@ -1,3 +1,4 @@
+[![Python Version](https://img.shields.io/badge/Python-3.7%2B-blue?style=for-the-badge&logo=python&logoColor=white)](https://www.python.org/)
 # Análisis de Datos
 
 Este repositorio contiene códigos para el análisis y visualización de datos, enfocándose en la gestión de inventario, registro de proveedores y productos, así como análisis visual de movimientos de inventario.
@@ -75,54 +76,57 @@ La base de datos ha sido diseñada cuidadosamente, aprovechando las relaciones e
 - Análisis visual de los movimientos de salida de productos con gráficos de pastel y de barras.
 ![image](https://github.com/LUXI4NO/MySQL-Gestion-de-Inventario/assets/140111840/e006367f-6d08-4578-b8fe-4c05b609a530)
 
-## Ejemplo de Graficos
+## Codigo de creacion del inventario
 
 ```python
-with st.container():
-    st.write("##")
-    st.markdown("<h1 style='text-align: center;'>Análisis Visual de Movimientos del Inventario de Productos</h1>", unsafe_allow_html=True)
-    st.write("##")
+import streamlit as st
+import pandas as pd
+import mysql.connector
 
-            # Conectar a la base de datos y recuperar los datos del inventario
-    with conectar_bd() as conexion, conexion.cursor() as cursor:
-        # Consulta SQL
-        query_inventario = """
-        SELECT p.Nombre AS Nombre_Producto, p.Stock, p.PrecioCompra, p.PrecioVenta, p.Categoria, e.UbicacionAlmacen, e.FechaEntrada, e.FechaCaducidad
-        FROM Existencias e
-        INNER JOIN Productos p ON e.ID_Productos = p.ID_Productos
-        WHERE p.Stock > 0  # Solo seleccionar productos con stock mayor que cero
-        """
+st.set_page_config(page_title="Gestion De Inventario", page_icon="⭕", layout="wide")
+st.sidebar.info("### Sistema de Gestion de Inventario")
+# Función para conectar a la base de datos
+def conectar_bd():
+    return mysql.connector.connect(
+        host='localhost',
+        user='root',
+        password='123456789',
+        database='Negocio'
+    )
 
-                # Ejecutar la consulta
-        cursor.execute(query_inventario)
-        datos_inventario = cursor.fetchall()
+def mostrar_inventario():
+    st.markdown("<h1 style='text-align: center;'>Inventario</h1>", unsafe_allow_html=True)
+    st.markdown("<h6 style='text-align: center;'>En esta sección, podrás ingresar la información necesaria para la gestión de Inventario. A continuación, se te guiará para registrar los datos pertinentes.</h6>", unsafe_allow_html=True)
 
-            # Inicializar tabla_inventario como None
-        tabla_inventario = None
+    # Conectar a la base de datos y recuperar los datos del inventario
+    conexion = conectar_bd()
+    cursor = conexion.cursor()
+    query_inventario = """
+    SELECT p.Nombre AS Nombre_Producto, p.Stock, p.PrecioCompra, p.PrecioVenta, p.Categoria, e.UbicacionAlmacen, e.FechaEntrada, e.FechaCaducidad
+    FROM Existencias e
+    INNER JOIN Productos p ON e.ID_Productos = p.ID_Productos
+    WHERE p.Stock > 0
+    """
 
-            # Crear tabla_inventario si hay datos en datos_inventario
-        if datos_inventario:
-            tabla_inventario = pd.DataFrame(datos_inventario, columns=["Producto", "Stock", "Precio Unitario", "Precio de Venta", "Categoría", "Ubicación en Almacén", "Fecha de Entrada", "Fecha de Caducidad"])
+    cursor.execute(query_inventario)
+    datos_inventario = cursor.fetchall()
+    cursor.close()
+    conexion.close()
 
-            columna_uno, columna_dos = st.columns(2)
+    # Inicializar tabla_inventario como None
+    tabla_inventario = None
 
-            with columna_uno:
-                fig_pie = px.pie(tabla_inventario, names='Producto', values='Stock', title='Distribución del Stock por Producto')
-                fig_pie.update_traces(textposition='inside', textinfo='percent+label')
-                fig_pie.update_layout(
-                    width=600,
-                    height=400,
-                    margin=dict(t=40, b=60),
-                    showlegend=True,
-                    legend=dict(x=1, y=0.5),
-                )
-                fig_pie.update_traces(marker=dict(line=dict(color='#ffffff', width=2)))
-                fig_pie.update_traces(
-                    hovertemplate='<b>%{label}</b><br>Stock: %{percent}<br>',
-                )
+    if datos_inventario:
+        tabla_inventario = pd.DataFrame(datos_inventario, columns=["Producto", "Stock", "Precio Unitario", "Precio de Venta", "Categoría", "Ubicación en Almacén", "Fecha de Entrada", "Fecha de Caducidad"])
 
-                    # Mostrar el gráfico de pastel en Streamlit
-                st.plotly_chart(fig_pie, use_container_width=True)
+        st.table(tabla_inventario)
+
+        tabla_inventario["Valor Total"] = tabla_inventario['Stock'] * tabla_inventario['Precio Unitario']
+        valor_total = tabla_inventario["Valor Total"].sum()
+
+        st.info(f"Valor total del inventario: ${valor_total:,.0f}")
+    else:
+        st.warning("No se encontraron registros en el inventario.")
 ```  
 ## Instrucciones de Uso
 
@@ -137,5 +141,5 @@ with st.container():
 
 ## Enlaces
 
-- [![Gmail](https://img.shields.io/badge/Gmail-D14836?style=for-the-badge&logo=gmail&logoColor=white)](mailto:alvarezlucianoezequiel@gmail.com)
-- [![LinkedIn](https://img.shields.io/badge/LinkedIn-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/luciano-alvarez-332843285/)
+[![Gmail](https://img.shields.io/badge/Gmail-D14836?style=for-the-badge&logo=gmail&logoColor=white)](mailto:alvarezlucianoezequiel@gmail.com)
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/luciano-alvarez-332843285/)
