@@ -59,24 +59,7 @@ La base de datos ha sido diseñada cuidadosamente, aprovechando las relaciones e
 - **Registro de Salida de Productos:** Permite registrar salidas de productos, como ventas, con la posibilidad de seleccionar el producto, tipo de movimiento y cantidad. La aplicación actualiza automáticamente el stock en consecuencia.
 
 - **Registro Histórico de Salidas:** Ofrece una tabla que presenta el historial de salidas de productos, incluyendo detalles como nombre del producto, ubicación, cantidad, tipo de movimiento, fecha y precio de venta.
-![image](https://github.com/LUXI4NO/MySQL-Gestion-de-Inventario/assets/140111840/d09f5d90-361a-4ac1-b52c-b16b94214427)
-
-### Análisis Visual de Movimientos de Salida de Productos
-
-- **Proporción de Movimientos:** Visualiza la proporción de diferentes tipos de movimientos de salida, proporcionando una instantánea clara de las acciones realizadas.
-
-- **Valor Total por Tipo de Movimiento:** Representa gráficamente el valor total generado por cada tipo de movimiento (por ejemplo, ventas), permitiendo una evaluación rápida de la contribución financiera de cada tipo.
-
-- **Cantidad Total por Fecha de Movimiento:** Muestra un gráfico de barras que ilustra la cantidad total de productos que salieron en un día específico, facilitando la identificación de patrones y tendencias.
-![image](https://github.com/LUXI4NO/MySQL-Gestion-de-Inventario/assets/140111840/cd26c740-edaf-4584-8718-7a7ff346aa77)
-
-### Análisis Visual de Movimientos del Inventario de Productos
-- Gráficos de pastel y de barras para analizar la distribución del stock y el valor total por producto.
-- Gráfico adicional para mostrar el stock de productos por ubicación en el almacén.
-- Análisis visual de los movimientos de salida de productos con gráficos de pastel y de barras.
-![image](https://github.com/LUXI4NO/MySQL-Gestion-de-Inventario/assets/140111840/e006367f-6d08-4578-b8fe-4c05b609a530)
-
-## Codigo de creacion del inventario
+#### Codigo de creacion del inventario
 
 ```python
 import streamlit as st
@@ -127,7 +110,25 @@ def mostrar_inventario():
         st.info(f"Valor total del inventario: ${valor_total:,.0f}")
     else:
         st.warning("No se encontraron registros en el inventario.")
-```  
+```
+![image](https://github.com/LUXI4NO/MySQL-Gestion-de-Inventario/assets/140111840/d09f5d90-361a-4ac1-b52c-b16b94214427)
+
+### Análisis Visual de Movimientos de Salida de Productos
+
+- **Proporción de Movimientos:** Visualiza la proporción de diferentes tipos de movimientos de salida, proporcionando una instantánea clara de las acciones realizadas.
+
+- **Valor Total por Tipo de Movimiento:** Representa gráficamente el valor total generado por cada tipo de movimiento (por ejemplo, ventas), permitiendo una evaluación rápida de la contribución financiera de cada tipo.
+
+- **Cantidad Total por Fecha de Movimiento:** Muestra un gráfico de barras que ilustra la cantidad total de productos que salieron en un día específico, facilitando la identificación de patrones y tendencias.
+![image](https://github.com/LUXI4NO/MySQL-Gestion-de-Inventario/assets/140111840/cd26c740-edaf-4584-8718-7a7ff346aa77)
+
+### Análisis Visual de Movimientos del Inventario de Productos
+- Gráficos de pastel y de barras para analizar la distribución del stock y el valor total por producto.
+- Gráfico adicional para mostrar el stock de productos por ubicación en el almacén.
+- Análisis visual de los movimientos de salida de productos con gráficos de pastel y de barras.
+![image](https://github.com/LUXI4NO/MySQL-Gestion-de-Inventario/assets/140111840/e006367f-6d08-4578-b8fe-4c05b609a530)
+
+`  
 ## Instrucciones de Uso
 
 1. Clona el repositorio: `git clone https://github.com/tu_usuario/analisis-de-datos.git`
